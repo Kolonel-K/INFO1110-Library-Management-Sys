@@ -1,29 +1,25 @@
-#validate the unikey
+# Unikey Validation Function
 def validate_unikey():
+    """
+    Prompts the user to enter their Uni-Key and validates its format:
+    - Must be 8 characters long
+    - First 4 characters: alphabetic
+    - Last 4 characters: numeric
+    Returns the valid Uni-Key as a string.
+    """
     while True:
         try:
             uni_key = input("Enter your Uni-Key: ")
-            # Ensures the uni_key length is 8 characters long
+            # Check length
             if len(uni_key) != 8:
                 raise ValueError
-            else:
-                # checks if the uni-key follows the required format of first 4 characters and last 4 characters   
-                alpha_part = uni_key[:4]
-                num_part = uni_key[4:]
-                #validates the first 4 characters (alphanumeric)
-                for char in alpha_part:
-                    if not char.isalpha():
-                        raise ValueError
-                #validates the last 4 characters, (digits)
-                for num in num_part:
-                    if not num.isnumeric():
-                        raise ValueError
-                #break the loop while the unikey is valid
-                print(f"\nUnikey Validated! Welcome, {uni_key}\n")
-                break
-        #continue the loop if the unikey is invalid
+            # Check first 4 are alphabetic
+            if not uni_key[:4].isalpha():
+                raise ValueError
+            # Check last 4 are numeric
+            if not uni_key[4:].isdigit():
+                raise ValueError
+            print(f"\nUnikey Validated! Welcome, {uni_key}\n")
+            return uni_key
         except ValueError:
             print("Invalid Unikey: User not found")
-    
-    return uni_key
-# validate_unikey()
